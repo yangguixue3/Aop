@@ -27,6 +27,9 @@
         <property name="maxUploadSize" value="10485760"/>
     </bean>
 
+    <!-- 配置自定义异常处理器 -->
+    <bean id="handlerExceptionResolver" class="com.msr.myException.CustomExceptionResolver"/>
+
     <!--  作用:处理器映射器，处理器适配器  -->
     <mvc:annotation-driven></mvc:annotation-driven>
 </beans>

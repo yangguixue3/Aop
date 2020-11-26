@@ -25,7 +25,8 @@
     <input type="file" name="upload" id="upload1"><br>
     <input type="submit" value="上传文件"><br>
 </form>
-
+<a href="/exception/test">此处抛出的是自定义的异常</a><br>
+<a href="/exception/test1">此处抛出的系统运行时异常</a>
 
 </body>
 </html>
