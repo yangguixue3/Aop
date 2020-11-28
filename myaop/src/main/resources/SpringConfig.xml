@@ -31,6 +31,7 @@
         <!--  向管理器中 注入 连接池-->
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <!--配置事务通知-->
     <!--
        向容器中注册  事务管理器的相关配置
        advice属性 :
