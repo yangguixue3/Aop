@@ -1,6 +1,7 @@
 package com.msr.mapper;
 
 import com.msr.domain.Account;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,7 @@ public interface AccountMapper {
     /**
      *  insert
      */
+    @Insert("insert into account(name,money) values(#{name},#{money}) ")
     void insert(Account account);
 
 }

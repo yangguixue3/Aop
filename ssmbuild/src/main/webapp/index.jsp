@@ -13,6 +13,12 @@
 <body>
     <h2>首页</h2>
     <a href="<%=request.getContextPath()%>/Account/queryAll">查询所有账号信息</a>
+    <h2>新增账户</h2>
+    <form action="/Account/insertAccount" method="post">
+        账号:<input type="text" name="name" id=""><br>
+        金额:<input type="text" name="money" id=""><br>
+        <input type="submit" value="保存">
+    </form>
 
 </body>
 </html>

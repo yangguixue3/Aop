@@ -21,6 +21,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void insert(Account account) {
+        accountMapper.insert(account);
         System.out.println("service层:执行了新增账户功能...");
 
     }
