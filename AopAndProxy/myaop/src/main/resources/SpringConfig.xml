@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--动态代理生成 通过工厂模式生成 ProxyService bin-->
+    <bean id="ProxyService" factory-bean="proxyFactory" factory-method="getAccountService"/>
+    <!--动态代理bean 以及 通过set注入属性-->
+    <bean id="proxyFactory" class="com.msr.factory.ProxyFactory">
+        <property name="accountService" ref="accountService"/>
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    <!--   把service的实现类 注册为service bean，以及 通过set注入 accountDao    -->
+    <bean id="accountService" class="com.msr.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    <bean id="accountDao" class="com.msr.dao.impl.AccountDaoImpl">
+<!--        注入属性 queryRunner-->
+    <property name="queryRunner" ref="queryRunner"/>
+        <property name="connectionUtils" ref="connectionUtils"/>
+    </bean>
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
+<!--   通过构造方法 注入dataSource -->
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+    <!-- 使用的是 c3p0 数据源  -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/store?serverTimezone=UTC"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+    <bean id="transactionManager" class="com.msr.unti.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"></property>
+    </bean>
+    <bean id="connectionUtils" class="com.msr.unti.ConnectionUtils">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+
+</beans>
