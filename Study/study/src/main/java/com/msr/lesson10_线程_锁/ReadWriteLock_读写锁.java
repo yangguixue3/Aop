@@ -6,9 +6,10 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * 运行现象:同时生成10个线程，读线程 同时出现 => 读读共享
- *        结束后，才开始写                => 读写互斥
- *        写是逐个出现                   => 写写互斥
+ * 运行现象:同时生成10个线程，
+ *          读线程 同时出现                => 读读共享
+ *          结束后，才开始写               => 读写互斥
+ *          写是逐个出现                  => 写写互斥
  */
 
 public class ReadWriteLock_读写锁 {
