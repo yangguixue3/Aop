@@ -30,7 +30,7 @@ class Test{
         String result = task.get();
         long endTime = System.currentTimeMillis();
         System.out.println("result = " + result);
-        System.out.println("cast : " + (endTime - startTime) / 1000 + " second!");
+        System.out.println("耗时 : " + (endTime - startTime) / 1000 + " 秒!");
 
     }
 }
