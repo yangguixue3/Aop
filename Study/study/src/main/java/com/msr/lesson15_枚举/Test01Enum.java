@@ -1,10 +1,6 @@
 package com.msr.lesson15_枚举;
 
-/**
- * @author 辉
- * @create 2020-12-15 9:32
- * @desc
- */
+
 public class Test01Enum {
 
     public static void main(String[] args) {
