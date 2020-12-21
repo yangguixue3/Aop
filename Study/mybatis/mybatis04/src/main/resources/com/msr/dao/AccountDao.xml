@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msr.dao.AccountDao">
+
+    <resultMap id="accountMap" type="account">
+        <id column="id" property="accountId"/>
+        <result column="uid" property="userId"/>
+        <result column="money" property="money"/>
+        <!-- 查询账户对应的用户
+            association : 一对一
+                    property: javaBean 属性名
+                    ofType: list<> 泛型类型
+                    column: 表account.uid 的外键是 user.id => 把 user.id 与 account.uid 相关联。去查询
+                            通俗:把account.uid作为 findById Sql文的参数 进行查询
+                    select: dao层接口中的方法 查询account
+        -->
+        <association property="user" javaType="user" column="uid" select="com.msr.dao.IUserDao.findById"></association>
+    </resultMap>
+   <select id="findAll" resultMap="accountMap">
+        select * from account
+   </select>
+
+    <select id="findByUid" resultType="account" parameterType="Integer">
+        select id accountId , uid userId , money from account where uid = #{uid};
+    </select>
+
+</mapper>
